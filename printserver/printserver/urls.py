@@ -18,7 +18,7 @@ from django.urls import path
 
 from users.views import login_view, status_view, logout_view ,home_view
 
-from prints.views import list_view
+from prints.views import list_view, pdf_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     # add login views
@@ -27,4 +27,6 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('status/', status_view, name='status'),
     path('list/', list_view, name='list'),
+    path('pdf/<int:print_id>.pdf', pdf_view, name='pdf'),
+
 ]
