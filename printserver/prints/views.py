@@ -25,6 +25,8 @@ def pdf_view(request,print_id):
 def submit_view(request):
 	if not request.user.is_authenticated or not request.user.is_team:
 		return redirect('home')
+
+
 	if request.method == 'POST':
 		tag = request.POST['tag']
 		source_code = request.POST['source_code']
@@ -32,4 +34,5 @@ def submit_view(request):
 		prints = Prints(owner=team_user, tag=tag, source_code=source_code)
 		prints.save()
 		return redirect('status')
+
 	return render(request, 'submit.html')

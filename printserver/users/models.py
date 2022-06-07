@@ -23,5 +23,8 @@ class TeamUser(models.Model):
 		verbose_name='Location',
 	)
 
+	def __str__(self):
+		return self.team_name
+
 class PrinterUser(models.Model):
 	user = models.OneToOneField(MyUser, on_delete=models.CASCADE,primary_key=True)

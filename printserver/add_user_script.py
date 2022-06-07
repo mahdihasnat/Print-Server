@@ -39,7 +39,6 @@ def add_superuser(username, password):
 		user = MyUser.objects.get(username=username)
 	except MyUser.DoesNotExist:
 		user = MyUser.objects.create_superuser(username=username, password=password)
-	print("user: ", user)
 	user.set_password(password)
 	user.save()
 
