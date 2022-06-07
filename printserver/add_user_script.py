@@ -34,5 +34,15 @@ def add_printer(username, password):
 		printer = PrinterUser.objects.create(user=user)
 	printer.save()
 
+def add_superuser(username, password):
+	try:
+		user = MyUser.objects.get(username=username)
+	except MyUser.DoesNotExist:
+		user = MyUser.objects.create_superuser(username=username, password=password)
+	print("user: ", user)
+	user.set_password(password)
+	user.save()
+
+add_superuser('admin', 'admin')
 add_team("t1","t1","Team one","DBL")
 add_printer("p1","p1")
