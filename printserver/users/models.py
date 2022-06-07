@@ -5,6 +5,9 @@ class MyUser(AbstractUser):
 	is_team = models.BooleanField(default=False)
 	is_printer = models.BooleanField(default=False)
 
+	class Meta(AbstractUser.Meta):
+		swappable = "AUTH_USER_MODEL"
+
 class TeamUser(models.Model):
 	user = models.OneToOneField(MyUser, on_delete=models.CASCADE,primary_key=True)
 	team_name = models.CharField(
