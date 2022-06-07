@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin,AbstractUser
 from django.contrib.auth.validators import UnicodeUsernameValidator
-class User(AbstractBaseUser,PermissionsMixin):
+from django.contrib.auth.models import UserManager
+
+class TeamUser(AbstractBaseUser):
 	"""
 		username and password are required. Other fields are optional.
 	"""
@@ -10,7 +12,7 @@ class User(AbstractBaseUser,PermissionsMixin):
 	username = models.CharField(
         max_length=150,
         unique=True,
-        help_text=_(
+        help_text=(
             "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
         ),
         validators=[username_validator],
@@ -20,12 +22,18 @@ class User(AbstractBaseUser,PermissionsMixin):
   )
 	team_name = models.CharField(
 		max_length=255,
+		blank=True,
+		null=True,
 		verbose_name='Team Name',
 	)
 	location = models.CharField(
 		max_length=255,
-		verbose_name='Location'
+		blank=True,
+		null=True,
+		verbose_name='Location',
 	)
+
+	objects = UserManager()
 
 	USERNAME_FIELD = 'username'
 	REQUIRED_FIELDS = [] #['team_name','location']
