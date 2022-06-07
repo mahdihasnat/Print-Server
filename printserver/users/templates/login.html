@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block head %}
+<!-- simple css for centering of login field -->
+<style>
+	.login-form {
+		margin: 0 auto;
+		width: 300px;
+	}
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+<!-- Create login form -->
+<form class="login-form" action="" method="post">
+	<!-- CSRF in django -->
+	{% csrf_token %}
+	<h1>Login</h1>
+	<div>
+		<label for="username">Username:</label>
+		<input type="text" name="username" id="username" required>
+	</div>
+	<div>
+		<label for="password">Password:</label>
+		<input type="password" name="password" id="password" required>
+	</div>
+	<div>
+		<input type="submit" value="Login">
+	</div>
+</form>
+<!-- print error in red color -->
+{% if error %}
+<p style="color: red;">{{ error }}</p>
+{% endif %}
+{% endblock %}

@@ -1,25 +1,15 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin,AbstractUser
+from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin,AbstractUser,User
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.contrib.auth.models import UserManager
+from django.contrib.auth.middleware import AuthenticationMiddleware
 
-class TeamUser(AbstractBaseUser):
-	"""
-		username and password are required. Other fields are optional.
-	"""
-	username_validator = UnicodeUsernameValidator()
+class MyUser(AbstractUser):
+	is_team = models.BooleanField(default=False)
+	is_printer = models.BooleanField(default=False)
 
-	username = models.CharField(
-        max_length=150,
-        unique=True,
-        help_text=(
-            "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
-        ),
-        validators=[username_validator],
-        error_messages={
-            "unique": "A user with that username already exists.",
-        },
-  )
+class TeamUser(models.Model):
+	user = models.OneToOneField(MyUser, on_delete=models.CASCADE,primary_key=True)
 	team_name = models.CharField(
 		max_length=255,
 		blank=True,
@@ -33,7 +23,5 @@ class TeamUser(AbstractBaseUser):
 		verbose_name='Location',
 	)
 
-	objects = UserManager()
-
-	USERNAME_FIELD = 'username'
-	REQUIRED_FIELDS = [] #['team_name','location']
+class PrinterUser(models.Model):
+	user = models.OneToOneField(MyUser, on_delete=models.CASCADE,primary_key=True)
