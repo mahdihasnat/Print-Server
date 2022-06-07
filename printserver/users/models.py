@@ -1,8 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin,AbstractUser,User
-from django.contrib.auth.validators import UnicodeUsernameValidator
-from django.contrib.auth.models import UserManager
-from django.contrib.auth.middleware import AuthenticationMiddleware
+from django.contrib.auth.models import AbstractUser
 
 class MyUser(AbstractUser):
 	is_team = models.BooleanField(default=False)

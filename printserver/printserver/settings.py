@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
 ]
+# custom user
+AUTH_USER_MODEL = 'users.MyUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -81,8 +83,6 @@ DATABASES = {
     }
 }
 
-# custom user
-AUTH_USER_MODEL = 'users.MyUser'
 
 
 # Password validation

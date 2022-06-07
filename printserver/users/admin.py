@@ -5,12 +5,12 @@ from .models import MyUser, TeamUser
 @admin.register(MyUser)
 class MyUserAdmin(admin.ModelAdmin):
 	list_display =  ('username','is_team','is_printer')
-	list_filter = ('userame','is_team','is_printer')
+	list_filter = ('username','is_team','is_printer')
 	search_fields = ('username','is_team','is_printer')
 
 @admin.register(TeamUser)
-class UserAdmin(admin.ModelAdmin):
-	list_display = ('username','team_name','location')
-	list_filter = ('team_name','location')
-	search_fields = ('username','team_name','location')
-	ordering = ('username',)
+class TeamUserAdmin(admin.ModelAdmin):
+	pass
+	# list_display = ('user','team_name','location')
+	# list_filter = ('user','team_name','location')
+	# search_fields = ('user','team_name','location')
