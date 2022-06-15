@@ -19,4 +19,4 @@ class Prints(models.Model):
 	printing_time = models.DateTimeField(null=True)
 
 	total_page = models.IntegerField(null=True)
-	status = models.IntegerField(choices=Status.choices, default=Status.SENT)
+	status = models.IntegerField(choices=Status.choices, default=Status.QUEUED)
