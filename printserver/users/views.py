@@ -6,17 +6,18 @@ from prints.models import Prints
 from .models import TeamUser
 
 def home_view(request):
+	
 	if not request.user.is_authenticated:
 		return redirect('login')
 	if request.user.is_team:
 		return redirect('status')
 	if request.user.is_printer:
 		return redirect('list')
-	return redirect('status')
+	return redirect('logout')
 
 def login_view(request):
 	if request.user.is_authenticated:
-		return redirect('status')
+		return redirect('home')
 	if request.method == 'POST':
 		username = request.POST['username']
 		password = request.POST['password']
