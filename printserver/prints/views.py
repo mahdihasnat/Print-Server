@@ -13,7 +13,7 @@ def list_view(request):
 
 def pdf_view(request,print_id):
 	print_id = str(print_id)
-	if not request.user.is_authenticated or not request.user.is_printer:
+	if not request.user.is_authenticated or request.user.is_team:
 		return redirect('login')
 	try:
 		
