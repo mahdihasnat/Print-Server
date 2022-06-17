@@ -47,6 +47,7 @@ class PDF(FPDF):
 		self.add_cell("|Location: "+ self.location,0)
 		self.add_cell("|Page: "+ str(self.page_no()) + '/{nb}' ,1)
 
+		self.dashed_line(self.get_x(),self.get_y(),self.w-self.get_x(),self.get_y())
 
 	def init(self):
 		self.add_font(FONT_NAME, '',path_to_font / 'CONSOLA.TTF', uni=True)
