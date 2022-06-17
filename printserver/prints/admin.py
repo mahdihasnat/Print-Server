@@ -9,7 +9,7 @@ def make_printed(modeladmin, request, queryset):
 
 @admin.register(Prints)
 class PrintsAdmin(admin.ModelAdmin):
-	list_display = ('print_id', 'owner', 'tag', 'submission_time', 'view_pdf', 'total_page', 'status')
+	list_display = ('print_id', 'owner', 'submission_time', 'view_pdf', 'total_page', 'status')
 	list_display_links = ('view_pdf',)
 	list_editable = ('status',)
 	list_filter = ('owner', 'status','submission_time', 'total_page')
