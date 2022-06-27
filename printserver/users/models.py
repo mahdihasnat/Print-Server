@@ -70,6 +70,9 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 			"""Return the short name for the user."""
 			return self.name
 
+	def __str__(self):
+		return self.get_full_name()+" ("+self.username+")"
+
 	def email_user(self, subject, message, from_email=None, **kwargs):
 			"""Send an email to this user."""
 			send_mail(subject, message, from_email, [self.email], **kwargs)
