@@ -13,6 +13,7 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
 	username = models.CharField(
 			_("username"),
+			primary_key=True,
 			max_length=150,
 			unique=True,
 			help_text=_(
