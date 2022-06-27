@@ -16,7 +16,7 @@ def pdf_view(request,print_id):
 		prints.save()	
 		return FileResponse(get_pdf(prints), as_attachment=False, filename=print_id+'.pdf')
 	except Prints.DoesNotExist:
-		return redirect('list')
+		return redirect('home')
 
 def submit_view(request):
 	if not request.user.is_authenticated or not request.user.is_team:
