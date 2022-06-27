@@ -13,7 +13,7 @@ class PrintsAdmin(admin.ModelAdmin):
 	list_display_links = ('print_id','view_pdf',)
 	list_editable = ('status',)
 	list_filter = ('owner', 'status','submission_time', 'total_page')
-	search_fields = ['print_id', 'owner__user__name','owner__user__username', 'tag', 'source_code', 'submission_time', 'printing_time', 'total_page', 'status']
+	search_fields = ['print_id', 'owner__user__name','owner__user__username', 'source_code', 'submission_time', 'printing_time', 'total_page', 'status']
 	ordering = ('-submission_time',)
 	actions = [make_printed]
 

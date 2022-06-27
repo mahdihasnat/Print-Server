@@ -12,7 +12,6 @@ class Prints(models.Model):
 
 	print_id = models.AutoField(primary_key=True)
 	owner = models.ForeignKey('users.TeamUser', on_delete=models.CASCADE , related_name='prints')
-	tag = models.CharField(max_length=100)
 	source_code = models.TextField()
 
 	submission_time = models.DateTimeField(auto_now_add=True)

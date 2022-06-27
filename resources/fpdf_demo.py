@@ -11,11 +11,10 @@ TEAM_NAME = 'BUET HELLO WORLD'
 
 class PDF(FPDF):
 
-    def __init__(self, print_id:str, location, tag, team_name, *args, **kwargs):
+    def __init__(self, print_id:str, location, team_name, *args, **kwargs):
         super(PDF, self).__init__(*args, **kwargs)
         self.print_id = print_id
         self.location = location
-        self.tag = tag
         self.team_name = team_name
         
 
@@ -48,7 +47,6 @@ class PDF(FPDF):
 pdf = PDF(
     print_id='1',
     location='WNL Row 1 Col 3',
-    tag='Problem J wa khaise',
     team_name="BUET HELLO WORLD",
     orientation='P', unit='mm', format='A4'
     )

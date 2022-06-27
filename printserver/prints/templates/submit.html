@@ -9,7 +9,6 @@
 <!-- https://medium.com/weekly-webtips/enable-line-numbering-to-any-html-textarea-35e15ea320e2 -->
 <!-- 
 	Form Structure
-	1. TextBox for tag edit
 	2. TextArea for source_code
 	3. File select to populate textarea
 	4. Submit Button
@@ -24,10 +23,6 @@
 		<div class="col-md-12">
 			<form action="{% url 'submit' %}" method="POST">
 				{% csrf_token %}
-				<div class="form-group">
-					<label for="tag">Tag</label>
-					<input type="text" class="form-control" id="tag" name="tag" placeholder="Tag">
-				</div>
 				<div class="form-group">
 					<label for="source_code">Source</label>
 					<textarea class="form-control" id="source_code" name="source_code" rows="10"></textarea>

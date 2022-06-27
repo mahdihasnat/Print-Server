@@ -24,10 +24,9 @@ def submit_view(request):
 
 
 	if request.method == 'POST':
-		tag = request.POST['tag']
 		source_code = request.POST['source_code']
 		team_user = TeamUser.objects.get(user=request.user)
-		prints = Prints(owner=team_user, tag=tag, source_code=source_code)
+		prints = Prints(owner=team_user, source_code=source_code)
 		prints.save()
 		return redirect('status')
 

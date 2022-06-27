@@ -14,11 +14,10 @@ SOURCE_CODE_SIZE = 12
 
 class PDF(FPDF):
 
-	def __init__(self, print_id:str, location, tag, team_name, *args, **kwargs):
+	def __init__(self, print_id:str, location, team_name, *args, **kwargs):
 		super(PDF, self).__init__(*args, **kwargs)
 		self.print_id = print_id
 		self.location = location
-		self.tag = tag
 		self.team_name = team_name
 		
 	def transform_text(self,txt:str)->str:
@@ -60,16 +59,11 @@ class PDF(FPDF):
 		self.set_font(FONT_NAME, '', SOURCE_CODE_SIZE)
 		self.write(LINE_HEIGHT,self.transform_text(source_code))
 	
-	def add_tag(self,tag):
-		self.set_font(FONT_NAME, '', SOURCE_CODE_SIZE)
-		self.write(LINE_HEIGHT,self.transform_text(tag))
-
 def get_pdf(print):
 	# Instantiation of inherited class
 	pdf = PDF(
 			print_id=str(print.print_id),
 			location=str(print.owner.location),
-			tag=str(print.tag),
 			team_name=str(print.owner.get_name()),
 			orientation='P', unit='mm', format='A4'
 			)
