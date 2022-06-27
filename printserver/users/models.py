@@ -23,7 +23,7 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 					"unique": _("A user with that username already exists."),
 			},
 	)
-	first_name = models.CharField(_("first name"), max_length=150, blank=True)
+	name = models.CharField(_("first name"), max_length=150, blank=True,null=True)
 	email = models.EmailField(_("email address"), blank=True)
 	is_staff = models.BooleanField(
 			_("staff status"),
@@ -63,12 +63,12 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 			"""
 			Return the first_name plus the last_name, with a space in between.
 			"""
-			full_name = "%s" % (self.first_name)
+			full_name = "%s" % (self.name)
 			return full_name.strip()
 
 	def get_short_name(self):
 			"""Return the short name for the user."""
-			return self.first_name
+			return self.name
 
 	def email_user(self, subject, message, from_email=None, **kwargs):
 			"""Send an email to this user."""
@@ -80,12 +80,6 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
 class TeamUser(models.Model):
 	user = models.OneToOneField(MyUser, on_delete=models.CASCADE,primary_key=True)
-	team_name = models.CharField(
-		max_length=255,
-		blank=True,
-		null=True,
-		verbose_name='Team Name',
-	)
 	location = models.CharField(
 		max_length=255,
 		blank=True,
@@ -94,7 +88,10 @@ class TeamUser(models.Model):
 	)
 
 	def __str__(self):
-		return self.team_name
+		return str(self.user)
+
+	def get_name(self):
+		return self.user.name
 
 class PrinterUser(models.Model):
 	user = models.OneToOneField(MyUser, on_delete=models.CASCADE,primary_key=True)

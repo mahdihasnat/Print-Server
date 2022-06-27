@@ -70,7 +70,7 @@ def get_pdf(print):
 			print_id=str(print.print_id),
 			location=str(print.owner.location),
 			tag=str(print.tag),
-			team_name=str(print.owner.team_name),
+			team_name=str(print.owner.get_name()),
 			orientation='P', unit='mm', format='A4'
 			)
 

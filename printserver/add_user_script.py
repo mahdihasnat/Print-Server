@@ -30,7 +30,8 @@ def add_team(username, password, team_name, location):
 	try:
 		user = MyUser.objects.get(username=username)
 	except MyUser.DoesNotExist:
-		user = MyUser.objects.create_user(username=username, password=password)
+		user = MyUser.objects.create_user(username=username, password=password,name=team_name)
+	user.name = team_name
 	user.set_password(password)
 	user.is_team = True
 	user.is_printer = False
@@ -38,8 +39,7 @@ def add_team(username, password, team_name, location):
 	try:
 		team = TeamUser.objects.get(user=user)
 	except TeamUser.DoesNotExist:
-		team = TeamUser.objects.create(user=user, team_name=team_name, location=location)
-	team.team_name = team_name
+		team = TeamUser.objects.create(user=user, location=location)
 	team.location = location
 	team.save()
 

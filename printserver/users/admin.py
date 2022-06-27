@@ -23,9 +23,9 @@ class MyUserAdmin(admin.ModelAdmin):
 @admin.register(TeamUser)
 class TeamUserAdmin(admin.ModelAdmin):
 	
-	list_display = ('user','team_name','location')
-	list_filter = ('user','team_name','location')
-	search_fields = ('user','team_name','location')
+	list_display = ('user','location')
+	list_filter = ('user','location')
+	search_fields = ('user','location')
 
 @admin.register(PrinterUser)
 class PrinterUserAdmin(admin.ModelAdmin):
