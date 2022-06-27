@@ -19,7 +19,7 @@ class PDF(FPDF):
 		self.conf = conf
 	
 	def transform_text(self,txt:str)->str:
-		return txt.replace("\t","    ")
+		return txt.replace("\t","    ").replace("{nb}","{ nb }")
 
 	def add_cell(self,txt,ln=0):
 			# self.cell(
@@ -35,15 +35,14 @@ class PDF(FPDF):
 			)
 
 	def header(self):
-		# Consolas regular 15
-		self.set_font(FONT_NAME, '', 15)
+		# Consolas regular with font_size
+		self.set_font(FONT_NAME, '', self.conf.font_size)
 
 		# PrintID
 		self.add_cell("#"+self.print_id)
 		self.add_cell("|Team: "+self.team_name,0)
 		self.add_cell("|Location: "+ self.location,0)
 		self.add_cell("|Page: "+ str(self.page_no()) + '/{nb}' ,1)
-
 		self.dashed_line(self.get_x(),self.get_y(),self.w-self.get_x(),self.get_y())
 
 	def init(self):
@@ -54,7 +53,7 @@ class PDF(FPDF):
 		self.add_page()
 	
 	def add_source_code(self,source_code):
-		self.set_font(FONT_NAME, '', self.conf.font_size)
+		# self.set_font(FONT_NAME, '', self.conf.font_size)
 		self.write(self.conf.line_height,self.transform_text(source_code))
 	
 def get_pdf(print):
