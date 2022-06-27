@@ -16,11 +16,27 @@
 
 {% block content %}
 
-<h2>Log In</h2>
-<form method="post">
+    <nav class="navbar bg-light">
+  <div class="container-fluid">
+    <div class="navbar-brand" >Print Server</div>
+    <div class="navbar-brand" >Login</div>
+  </div>
+</nav>
+    <br/>
+<div class="container d-flex justify-content-center">
+
+
+<div class="card p-2" style="width: 25rem;">
+    <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">Log In</button>
+        <div class="d-grid gap-2">
+
+      <button type="submit" class="btn btn-success">Log In</button>
+    </div>
+
 </form>
+</div>
+</div>
 
 {% endblock %}
