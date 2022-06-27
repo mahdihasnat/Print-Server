@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'prints',
-    # 'solo',
+    'solo',
+    'solo.tests',
 ]
 # custom user
 AUTH_USER_MODEL = 'users.MyUser'
