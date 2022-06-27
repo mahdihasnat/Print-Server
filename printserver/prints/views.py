@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 
 from .models import Prints
 from .pdf_gen import get_pdf
+from .forms import SubmitForm
 
 from users.models import TeamUser
 
@@ -24,10 +25,11 @@ def submit_view(request):
 
 
 	if request.method == 'POST':
-		source_code = request.POST['source_code']
-		team_user = TeamUser.objects.get(user=request.user)
-		prints = Prints(owner=team_user, source_code=source_code)
-		prints.save()
-		return redirect('status')
-
-	return render(request, 'submit.html')
+		form = SubmitForm(request.POST)
+		if form.is_valid():				
+			team_user = TeamUser.objects.get(user=request.user)
+			prints = Prints(owner=team_user , **form.cleaned_data)
+			prints.save()
+			return redirect('status')
+	
+	return render(request, 'submit.html',{'form':SubmitForm(initial={'owner':request.user})})

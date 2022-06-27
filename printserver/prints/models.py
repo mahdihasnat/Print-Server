@@ -15,7 +15,7 @@ class Prints(models.Model):
 	source_code = models.TextField()
 
 	submission_time = models.DateTimeField(auto_now_add=True)
-	printing_time = models.DateTimeField(null=True)
+	printing_time = models.DateTimeField(null=True,blank=True)
 
-	total_page = models.IntegerField(null=True)
+	total_page = models.IntegerField(null=True,blank=True)
 	status = models.IntegerField(choices=Status.choices, default=Status.QUEUED)

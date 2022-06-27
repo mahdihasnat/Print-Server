@@ -71,6 +71,7 @@ def add_superuser(username, password):
 create_printer_group()
 add_superuser('admin', 'admin')
 add_team("t1","t1","Team one","DBL")
+add_team("t2","t2","Team two","BIO")
 add_printer("p1","p1")
 
 print("All data added")
