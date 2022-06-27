@@ -1,6 +1,7 @@
 import fpdf
 from fpdf import FPDF
 import io
+from .models import PrintConfiguration
 
 # path supported for Windows, Linux, and Mac
 import pathlib
@@ -61,11 +62,12 @@ class PDF(FPDF):
 	
 def get_pdf(print):
 	# Instantiation of inherited class
+	conf = PrintConfiguration.get_solo()
 	pdf = PDF(
 			print_id=str(print.print_id),
 			location=str(print.owner.location),
 			team_name=str(print.owner.get_name()),
-			orientation='P', unit='mm', format='A4'
+			orientation=conf.orientation, unit=conf.unit, format=conf.paper_type
 			)
 
 	pdf.init()

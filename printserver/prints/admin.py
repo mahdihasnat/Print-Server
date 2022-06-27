@@ -19,3 +19,8 @@ class PrintsAdmin(admin.ModelAdmin):
 
 	def view_pdf(self,obj):
 		return format_html('<a href="/pdf/{0}.pdf">View Pdf</a>', obj.print_id)
+
+from solo.admin import SingletonModelAdmin
+from .models import PrintConfiguration
+
+admin.site.register(PrintConfiguration, SingletonModelAdmin)
