@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-4=11!n&7w^6qt&ggee@(4800yg1g62bz)$!@t95pnlhfsq-73n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'prints',
+    # 'solo',
 ]
 # custom user
 AUTH_USER_MODEL = 'users.MyUser'
@@ -70,6 +71,14 @@ TEMPLATES = [
         },
     },
 ]
+
+# https://docs.djangoproject.com/en/4.0/howto/static-files/
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'collectedstatic'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
 
 WSGI_APPLICATION = 'printserver.wsgi.application'
 
@@ -110,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Dhaka'
 
 USE_I18N = True
 
