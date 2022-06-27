@@ -60,6 +60,10 @@ class PDF(FPDF):
 		self.set_font(FONT_NAME, '', SOURCE_CODE_SIZE)
 		self.write(LINE_HEIGHT,self.transform_text(source_code))
 	
+	def add_tag(self,tag):
+		self.set_font(FONT_NAME, '', SOURCE_CODE_SIZE)
+		self.write(LINE_HEIGHT,self.transform_text(tag))
+
 def get_pdf(print):
 	# Instantiation of inherited class
 	pdf = PDF(
