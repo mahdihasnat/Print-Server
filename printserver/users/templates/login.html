@@ -15,25 +15,12 @@
 {% endblock %}
 
 {% block content %}
-<!-- Create login form -->
-<form class="login-form" action="" method="post">
-	<!-- CSRF in django -->
-	{% csrf_token %}
-	<h1>Login</h1>
-	<div>
-		<label for="username">Username:</label>
-		<input type="text" name="username" id="username" required>
-	</div>
-	<div>
-		<label for="password">Password:</label>
-		<input type="password" name="password" id="password" required>
-	</div>
-	<div>
-		<input type="submit" value="Login">
-	</div>
+
+<h2>Log In</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Log In</button>
 </form>
-<!-- print error in red color -->
-{% if error %}
-<p style="color: red;">{{ error }}</p>
-{% endif %}
+
 {% endblock %}

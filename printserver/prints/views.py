@@ -6,11 +6,6 @@ from .pdf_gen import get_pdf
 
 from users.models import TeamUser
 
-def list_view(request):
-	if not request.user.is_authenticated or not request.user.is_printer:
-		return redirect('login')
-	return render(request, 'list.html',{'prints':Prints.objects.all()})
-
 def pdf_view(request,print_id):
 	print_id = str(print_id)
 	if not request.user.is_authenticated or request.user.is_team:
