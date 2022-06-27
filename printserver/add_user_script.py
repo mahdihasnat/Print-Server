@@ -13,6 +13,11 @@ def create_printer_group():
 	group.permissions.add(Permission.objects.get(name='Can change prints'))
 	group.permissions.add(Permission.objects.get(name='Can delete prints'))
 	group.permissions.add(Permission.objects.get(name='Can view prints'))
+	
+	group.permissions.add(Permission.objects.get(name='Can add Print Configuration'))
+	group.permissions.add(Permission.objects.get(name='Can change Print Configuration'))
+	group.permissions.add(Permission.objects.get(name='Can delete Print Configuration'))
+	group.permissions.add(Permission.objects.get(name='Can view Print Configuration'))
 	group.save()
 
 
