@@ -50,6 +50,9 @@ class PrintConfiguration(SingletonModel):
 	unit = models.CharField(choices=UserUnit.choices, max_length=2, default=UserUnit.Point)
 
 
+	line_height = models.FloatField(default=6.0,null=False,blank=False)	
+	font_size = models.FloatField(default=12.0,null=False,blank=False,verbose_name="Font Size in Points")
+
 	def __str__(self):
 				return "Print Configuration"
 	class Meta:

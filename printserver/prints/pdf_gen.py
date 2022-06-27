@@ -8,19 +8,16 @@ import pathlib
 path_to_font = pathlib.Path(__file__).parent.absolute() / 'fonts'
 
 FONT_NAME = 'ConsolasR'
-LINE_HEIGHT = 6
-FONT_WIDTH = 4
-SOURCE_CODE_SIZE = 12
-
 
 class PDF(FPDF):
 
-	def __init__(self, print_id:str, location, team_name, *args, **kwargs):
+	def __init__(self, print_id:str, location, team_name, conf, *args, **kwargs):
 		super(PDF, self).__init__(*args, **kwargs)
 		self.print_id = print_id
 		self.location = location
 		self.team_name = team_name
-		
+		self.conf = conf
+	
 	def transform_text(self,txt:str)->str:
 		return txt.replace("\t","    ")
 
@@ -33,7 +30,7 @@ class PDF(FPDF):
 			# 				align='L',fill=False
 			# 		)
 			self.write(
-				h=LINE_HEIGHT,
+				h=self.conf.line_height,
 				txt=txt+ ("\n" if ln == 1 else "")
 			)
 
@@ -57,8 +54,8 @@ class PDF(FPDF):
 		self.add_page()
 	
 	def add_source_code(self,source_code):
-		self.set_font(FONT_NAME, '', SOURCE_CODE_SIZE)
-		self.write(LINE_HEIGHT,self.transform_text(source_code))
+		self.set_font(FONT_NAME, '', self.conf.font_size)
+		self.write(self.conf.line_height,self.transform_text(source_code))
 	
 def get_pdf(print):
 	# Instantiation of inherited class
@@ -67,6 +64,7 @@ def get_pdf(print):
 			print_id=str(print.print_id),
 			location=str(print.owner.location),
 			team_name=str(print.owner.get_name()),
+			conf=conf,
 			orientation=conf.orientation, unit=conf.unit, format=conf.paper_type
 			)
 
