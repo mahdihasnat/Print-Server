@@ -1,5 +1,6 @@
 from users.models import MyUser, TeamUser, PrinterUser
 from django.contrib.auth.models import Group , Permission
+import csv
 
 PRINTER_GROUP_NAME = 'printer'
 
@@ -7,7 +8,9 @@ def create_printer_group():
 	try:
 		group = Group.objects.get(name=PRINTER_GROUP_NAME)
 	except Group.DoesNotExist:
+		print("Group does not exist")
 		group = Group.objects.create(name=PRINTER_GROUP_NAME)
+		group.save()
 	
 	group.permissions.add(Permission.objects.get(name='Can add prints'))
 	group.permissions.add(Permission.objects.get(name='Can change prints'))
@@ -73,10 +76,25 @@ def add_superuser(username, password):
 	user.set_password(password)
 	user.save()
 
-create_printer_group()
-add_superuser('admin', 'admin')
-add_team("t1","t1","Team one","DBL")
-add_team("t2","t2","Team two","BIO")
-add_printer("p1","p1")
 
-print("All data added")
+def add_from_csv(csv_file_name):
+	# format: row_number , Team_name , Location , Username, Password
+	with open(csv_file_name, 'r') as file:
+		reader = csv.reader(file)
+		for row in reader:
+			username = row[3]
+			password = row[4]
+			team_name = row[1]
+			location = row[2]
+			add_team(username, password, team_name, location)
+
+
+# create_printer_group()
+# add_superuser('admin', 'admin')
+# add_team("t1","t1","Team one","DBL")
+# add_team("t2","t2","Team two","BIO")
+# add_printer("p1","p1")
+
+# print("All data added")
+
+add_from_csv("")
