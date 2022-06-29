@@ -1,7 +1,7 @@
-import fpdf
 from fpdf import FPDF
 import io
-from .models import PrintConfiguration
+from .models import Prints, PrintConfiguration
+from django.utils import timezone
 
 # path supported for Windows, Linux, and Mac
 import pathlib
@@ -69,6 +69,11 @@ def get_pdf(print):
 
 	pdf.init()
 	pdf.add_source_code(print.source_code)
+
+	print.status = Prints.Status.PRINTING
+	print.printing_time = timezone.now()
+	print.total_page = pdf.page_no()
+	print.save()
 
 	buffer = io.BytesIO(pdf.output(dest='S').encode('latin-1'))
 	return buffer

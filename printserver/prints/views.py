@@ -13,8 +13,6 @@ def pdf_view(request,print_id):
 		return redirect('login')
 	try:
 		prints = Prints.objects.get(print_id=print_id)
-		prints.status = Prints.Status.PRINTING
-		prints.save()	
 		return FileResponse(get_pdf(prints), as_attachment=False, filename=print_id+'.pdf')
 	except Prints.DoesNotExist:
 		return redirect('home')
