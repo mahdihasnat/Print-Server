@@ -27,12 +27,12 @@ def create_printer_group():
 def add_groups(user,groupname):
 	try:
 		group = Group.objects.get(name=groupname)
+		group.user_set.add(user)
+		group.save()
 	except Group.DoesNotExist:
 		assert(False)
 
 		# Add can view prints to group
-	group.user_set.add(user)
-	group.save()
 
 def add_team(username, password, team_name, location):
 	try:
@@ -90,11 +90,8 @@ def add_from_csv(csv_file_name):
 
 
 # create_printer_group()
-# add_superuser('admin', 'admin')
-# add_team("t1","t1","Team one","DBL")
-# add_team("t2","t2","Team two","BIO")
-# add_printer("p1","p1")
-
-# print("All data added")
-
-add_from_csv("")
+add_superuser('admin', 'admin')
+add_team("t1","t1","Team one","DBL")
+add_team("t2","t2","Team two","BIO")
+add_printer("p1","p1")
+print("All data added")
