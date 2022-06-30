@@ -141,3 +141,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://learndjango.com/tutorials/django-login-and-logout-tutorial
 
 # LOGIN_REDIRECT_URL = 'status' # changed to next_page parameter in login view urls.py
+LOGOUT_REDIRECT_URL = 'logout'
