@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'solo',
     'solo.tests',
 ]
+
 # custom user
 AUTH_USER_MODEL = 'users.MyUser'
 
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'printserver.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -142,3 +143,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # LOGIN_REDIRECT_URL = 'status' # changed to next_page parameter in login view urls.py
 LOGOUT_REDIRECT_URL = 'logout'
+
+# Project Title
+PROJECT_TITLE = 'Print Server'
