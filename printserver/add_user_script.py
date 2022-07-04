@@ -1,4 +1,4 @@
-from users.models import MyUser, TeamUser, PrinterUser
+from users.models import MyUser, TeamUser, PrinterUser, Lab
 from django.contrib.auth.models import Group , Permission
 import csv
 
@@ -34,7 +34,7 @@ def add_groups(user,groupname):
 
 		# Add can view prints to group
 
-def add_team(username, password, team_name, location):
+def add_team(username, password, team_name, lab_name, location):
 	try:
 		user = MyUser.objects.get(username=username)
 	except MyUser.DoesNotExist:
@@ -48,6 +48,14 @@ def add_team(username, password, team_name, location):
 		team = TeamUser.objects.get(user=user)
 	except TeamUser.DoesNotExist:
 		team = TeamUser.objects.create(user=user, location=location)
+	
+	try:
+		lab = Lab.objects.get(name=lab_name.upper())
+	except Lab.DoesNotExist:
+		lab = Lab.objects.create(name=lab_name.upper())
+		lab.save()
+	
+	team.lab = lab
 	team.location = location
 	team.save()
 
@@ -86,12 +94,13 @@ def add_from_csv(csv_file_name):
 			password = row[4]
 			team_name = row[1]
 			location = row[2]
-			add_team(username, password, team_name, location)
+			lab_name = "Lab"
+			add_team(username, password, team_name, lab_name, location)
 
 
 # create_printer_group()
 add_superuser('admin', 'admin')
-add_team("t1","t1","Team one","DBL")
-add_team("t2","t2","Team two","BIO")
+add_team("t1","t1","Team one","DBL","1-2")
+add_team("t2","t2","Team two","BIO","2-3")
 add_printer("p1","p1")
 print("All data added")

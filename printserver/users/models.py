@@ -82,8 +82,29 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 		swappable = "AUTH_USER_MODEL"
 
 
+class Lab(models.Model):
+	name = models.CharField(
+		"Lab name",
+		max_length=10,
+		blank=True,
+		null=True,
+		unique = True,
+		help_text="Lab name"
+	)
+
+	def __str__(self) -> str:
+		return self.name
+
 class TeamUser(models.Model):
 	user = models.OneToOneField(MyUser, on_delete=models.CASCADE,primary_key=True)
+	lab = models.ForeignKey(
+		Lab,
+		on_delete=models.SET_NULL,
+		blank=True,
+		null=True,
+		default=None,
+		help_text="Lab"
+	)
 	location = models.CharField(
 		max_length=255,
 		blank=True,

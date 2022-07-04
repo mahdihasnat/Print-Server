@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import MyUser, TeamUser, PrinterUser
+from .models import MyUser, TeamUser, PrinterUser, Lab
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
+
 class MyUserCreationForm(UserCreationForm):
 	class Meta:
 		model = get_user_model()
@@ -22,13 +23,22 @@ class MyUserAdmin(admin.ModelAdmin):
 
 @admin.register(TeamUser)
 class TeamUserAdmin(admin.ModelAdmin):
-	
-	list_display = ('user','location')
-	list_filter = ('user','location')
-	search_fields = ('user','location')
+
+	list_display = ('user','lab','location')
+	list_filter = ('user','lab')
+	search_fields = ('user__name', 'user__username','lab__name','location')
 
 @admin.register(PrinterUser)
 class PrinterUserAdmin(admin.ModelAdmin):
 	list_display = ('user',)
 	list_filter = ('user',)
 	search_fields = ('user',)
+
+
+@admin.register(Lab)
+class LabAdmin(admin.ModelAdmin):
+	list_display = ('name',)
+	list_filter = ('name',)
+	search_fields = ('name',)
+	ordering = ('name',)
+	fields = ('name',)
