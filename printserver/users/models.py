@@ -83,6 +83,12 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Lab(models.Model):
+	id = models.BigAutoField(
+		auto_created=True, 
+		primary_key=True,
+		serialize=True,  
+		verbose_name='ID'
+	)
 	name = models.CharField(
 		"Lab name",
 		max_length=10,

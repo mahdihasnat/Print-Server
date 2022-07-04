@@ -1,0 +1,1 @@
+[github](https://github.com/ctxis/django-admin-multiple-choice-list-filter)

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Prints
 from django.utils.html import format_html
+from .filters import LabFilter
 
 @admin.action(description="Mark Selected prints as printed")
 def make_printed(modeladmin, request, queryset):
@@ -12,7 +13,7 @@ class PrintsAdmin(admin.ModelAdmin):
 	list_display = ('print_id', 'owner', 'submission_time', 'view_pdf', 'total_page', 'status')
 	list_display_links = ('print_id','view_pdf',)
 	list_editable = ('status',)
-	list_filter = ('status','submission_time', 'total_page')
+	list_filter = ('status','submission_time', 'total_page',LabFilter)
 	search_fields = ['print_id', 'owner__user__name','owner__user__username', 'source_code', 'submission_time', 'printing_time', 'total_page', 'status']
 	ordering = ('-submission_time',)
 	actions = [make_printed]

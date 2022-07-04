@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'prints',
     'solo',
     'solo.tests',
+    'django_admin_multiple_choice_list_filter',
 ]
 
 # custom user
