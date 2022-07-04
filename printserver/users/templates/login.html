@@ -4,7 +4,10 @@
 {% block contents %}
     <div class="container">
         <div class="text-center p20">
-            <h1><i class="fa fa-print"> </i> Print Server</h1>
+            <h1>
+                <i class="fa fa-print"> </i>
+                {{ PROJECT_TITLE }}
+            </h1>
         </div>
         {% if errors %}
             <div class="alert alert-danger margin-center" style="width: 400px;">{{ errors }}</div>
