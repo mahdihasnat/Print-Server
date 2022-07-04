@@ -46,3 +46,5 @@ pip freeze > requirements.txt
 | submit | 'logout', 'home' | Team can submit code as print request
 | pdf    |                  | Team_user -> null , other user -> pdf
 | admin  | ...              | handled by django admin implementation
+| admin-prints model | ...  | Auto refresging enabled if page is scrolled to the top. Scroll down a little bit to stop auto refresh. 
+Control+Click on view pdf link to open pdf in new tab.	
