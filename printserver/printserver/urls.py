@@ -23,11 +23,17 @@ from django.contrib.auth import views as auth_views
 
 from prints.views import pdf_view, submit_view
 urlpatterns = [
+    # Admin Panel
     path('admin/', admin.site.urls),
+
+    # Login and Logout
+    path('login/', auth_views.LoginView.as_view(template_name='login.html', next_page='home'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+
+    # Client facing pages
     path('', home_view, name='home'),
-    path('login/',auth_views.LoginView.as_view(template_name='login.html',next_page = 'home'), name='login'),
-    path('logout/',auth_views.LogoutView.as_view(next_page='login'), name='logout'),
-    path('status/', status_view, name='status'),
-    path('pdf/<int:print_id>.pdf', pdf_view, name='pdf'),
     path('submit/', submit_view, name='submit'),
+    path('status/', status_view, name='status'),
+
+    path('pdf/<int:print_id>.pdf', pdf_view, name='pdf'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
