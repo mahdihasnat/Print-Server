@@ -1,53 +1,39 @@
 {% extends 'base.html' %}
-
-{% block title %}
-Submit To Print
-{% endblock %}
-
-{% block head %}
-
-{% endblock %}
+{% load static %}
+{% load form_tags %}
 
 {% block content %}
+    <!-- https://medium.com/weekly-webtips/enable-line-numbering-to-any-html-textarea-35e15ea320e2 -->
+    <!--
+        Form Structure
+        2. TextArea for source_code
+        3. File select to populate textarea
+        4. Submit Button
+     -->
+    <div class="row p20">
+        <form action="{% url 'submit' %}" method="POST">
+            {% csrf_token %}
+            {% form_error form %}
+            {% basic_form_headless form %}
+            <div class="form-group">
+                <input type="file" id="myFile" name="filename" onchange="populateSourceCode()">
+            </div>
+            <button class="btn btn-primary center-block" type="submit">Send to Print!</button>
+        </form>
+    </div>
+{% endblock %}
 
-
-<!-- https://medium.com/weekly-webtips/enable-line-numbering-to-any-html-textarea-35e15ea320e2 -->
-<!-- 
-	Form Structure
-	2. TextArea for source_code
-	3. File select to populate textarea
-	4. Submit Button
- -->
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<h1>Submit Code to print</h1>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<form action="{% url 'submit' %}" method="POST">
-				{% csrf_token %}
-				{{ form.as_p }}
-				<input type="file" id="myFile" name="filename"  onchange=	"populateSourceCode()">
-				<script type="text/javascript">	
-					function populateSourceCode() {
-						var file = document.getElementById('myFile').files[0];
-						var text = document.getElementById('id_source_code');
-						var reader = new FileReader();
-						reader.onload = function(e) {
-							text.value = e.target.result;
-						}
-						reader.readAsText(file);
-						document.getElementById("myFile").value = "";
-					}
-				</script>
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</form>
-		</div>
-	</div>
-</div>
-
-
-
+{% block page_script %}
+    <script type="text/javascript">
+        function populateSourceCode() {
+            var file = document.getElementById('myFile').files[0];
+            var text = document.getElementById('id_source_code');
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                text.value = e.target.result;
+            }
+            reader.readAsText(file);
+            document.getElementById("myFile").value = "";
+        }
+    </script>
 {% endblock %}

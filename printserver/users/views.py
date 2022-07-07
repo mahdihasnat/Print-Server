@@ -5,15 +5,16 @@ from django.contrib.auth import authenticate, login, logout
 from prints.models import Prints
 from .models import TeamUser
 
+
 def home_view(request):
-	
 	if not request.user.is_authenticated:
 		return redirect('login')
 	if request.user.is_team:
-		return redirect('status')
+		return redirect('submit')
 	if request.user.is_staff:
 		return redirect('/admin/')
 	return redirect('logout')
+
 
 def status_view(request):
 	if not request.user.is_authenticated or not request.user.is_team:
