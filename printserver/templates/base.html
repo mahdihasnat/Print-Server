@@ -1,40 +1,30 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>{% block title %} Print Server {% endblock %}</title>
-	{% block head %}
-	{% endblock %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}{{ PROJECT_TITLE }}{% endblock %}
+        </title>
+        <link rel="shortcut icon" href="{% static 'img/print.ico' %}">
+        {% include "includes/css.html" %}
+    </head>
+    <body>
+        <div id="wrapper">
+            <!-- navbar -->
+            {% include "includes/navbar.html" %}
 
-  
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+            <!-- Page Content -->
+            <div id="page-wrapper">
+                {% include "django_messages.html" %}
+                {% block content %}{% endblock %}
+            </div>
+            <!-- /#page-content-wrapper -->
+        </div>
+        <!-- /#wrapper -->
 
-</head>
-<body>
-  <!-- Add header -->
-  <div class="header">
-    <h1>
-    
-      <!-- If authenticated then hello with name and link of logout, otherwise nothing -->
-      {% if user.is_authenticated %}
-          <nav class="navbar bg-light">
-  <div class="container-fluid">
-
-      <div class="navbar-brand">Hello {{ user.get_full_name }}</div>
-        <a class="navbar-brand btn btn-danger" href="{% url 'logout' %}">Logout</a>
-  </div>
-</nav>
-
-
-      {% endif %}
-      
-    </h1>
-  </div>
-
-  {% block content %}
-  {% endblock %}
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-</body>
+        {% include 'includes/js.html' %}
+        {% block page_script %}{% endblock %}
+    </body>
 </html>

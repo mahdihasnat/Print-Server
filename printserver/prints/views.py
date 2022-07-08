@@ -7,6 +7,7 @@ from .forms import SubmitForm
 
 from users.models import TeamUser
 
+
 def pdf_view(request,print_id):
 	print_id = str(print_id)
 	if not request.user.is_authenticated or request.user.is_team:
@@ -17,17 +18,17 @@ def pdf_view(request,print_id):
 	except Prints.DoesNotExist:
 		return redirect('home')
 
+
 def submit_view(request):
 	if not request.user.is_authenticated or not request.user.is_team:
 		return redirect('home')
-
 
 	if request.method == 'POST':
 		form = SubmitForm(request.POST)
 		if form.is_valid():				
 			team_user = TeamUser.objects.get(user=request.user)
-			prints = Prints(owner=team_user , **form.cleaned_data)
+			prints = Prints(owner=team_user, **form.cleaned_data)
 			prints.save()
 			return redirect('status')
 	
-	return render(request, 'submit.html',{'form':SubmitForm(initial={'owner':request.user})})
+	return render(request, 'submit.html', {'form': SubmitForm(initial={'owner': request.user})})

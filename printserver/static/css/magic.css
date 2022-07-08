@@ -51,8 +51,9 @@ body {
 }
 
 #page-wrapper {
-    width: 100%;
+    width: 75%;
     padding: 70px 20px 20px 20px;
+    margin: 0 auto;
 }
 
 #wrapper.toggled #page-wrapper {
