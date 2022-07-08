@@ -11,6 +11,11 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+### Install Dependencies (Manual)
+```bash
+pip install django fpdf
+```
+
 ### Generate requirements.txt
 ```bash
 pip freeze > requirements.txt
