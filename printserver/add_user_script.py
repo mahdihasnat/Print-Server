@@ -30,8 +30,10 @@ def add_groups(user,groupname):
 		group.user_set.add(user)
 		group.save()
 	except Group.DoesNotExist:
-		assert(False)
-
+		print("Group does not exist")
+		create_printer_group()
+		print("Group created")
+		return add_groups(user,groupname)
 		# Add can view prints to group
 
 def add_team(username, password, team_name, lab_name, location):

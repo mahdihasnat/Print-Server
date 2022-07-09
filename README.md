@@ -13,7 +13,7 @@ pip install -r requirements.txt
 
 ### Install Dependencies (Manual)
 ```bash
-pip install django fpdf
+pip install Django==4.0.5 fpdf==1.7.2
 ```
 
 ### Generate requirements.txt
