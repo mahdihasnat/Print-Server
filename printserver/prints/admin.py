@@ -3,9 +3,9 @@ from .models import Prints
 from django.utils.html import format_html
 from .filters import LabFilter
 
-@admin.action(description="Mark Selected prints as printed")
-def make_printed(modeladmin, request, queryset):
-	queryset.update(status=Prints.Status.PRINTED)
+@admin.action(description="Mark Selected prints as Delivered")
+def make_delivered(modeladmin, request, queryset):
+	queryset.update(status=Prints.Status.DELIVERED)
 
 
 @admin.register(Prints)
@@ -16,7 +16,7 @@ class PrintsAdmin(admin.ModelAdmin):
 	list_filter = ('status','submission_time', 'total_page',LabFilter)
 	search_fields = ['print_id', 'owner__user__name','owner__user__username', 'source_code', 'submission_time', 'printing_time', 'total_page', 'status']
 	ordering = ('-submission_time',)
-	actions = [make_printed]
+	actions = [make_delivered]
 
 	def view_pdf(self,obj):
 		return format_html('<a href="/pdf/{0}.pdf">View Pdf</a>', obj.print_id)

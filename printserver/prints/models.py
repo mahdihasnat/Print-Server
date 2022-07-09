@@ -4,11 +4,8 @@ from solo.models import SingletonModel
 class Prints(models.Model):
 
 	class Status(models.IntegerChoices):
-		SENT = 1
 		QUEUED = 2
 		PRINTING = 3
-		PRINTED = 4
-		DELIVERING = 5
 		DELIVERED = 6
 
 	print_id = models.AutoField(primary_key=True)
