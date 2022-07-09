@@ -23,11 +23,10 @@ class MyUserAdmin(admin.ModelAdmin):
 
 @admin.register(TeamUser)
 class TeamUserAdmin(admin.ModelAdmin):
-
-	list_display = ('user','lab','location')
+	list_display = ('user','lab','location','get_total_page_usage')
 	list_filter = ('user','lab')
 	search_fields = ('user__name', 'user__username','lab__name','location')
-
+	
 @admin.register(PrinterUser)
 class PrinterUserAdmin(admin.ModelAdmin):
 	list_display = ('user',)

@@ -4,6 +4,7 @@ from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from django.core.mail import send_mail
+from django.db.models import Sum
 
 class MyUser(AbstractBaseUser, PermissionsMixin):
 	"""
@@ -123,6 +124,16 @@ class TeamUser(models.Model):
 
 	def get_name(self):
 		return self.user.name
+	
+	def get_total_page_usage(self):
+		"""
+			TODO: change to some sql query thing for faster execution
+		"""
+		cnt = self.prints.aggregate(a=Sum('total_page'))['a']
+		if cnt == None:
+			cnt=0
+		return cnt
+
 
 class PrinterUser(models.Model):
 	user = models.OneToOneField(MyUser, on_delete=models.CASCADE,primary_key=True)
