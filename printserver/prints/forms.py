@@ -9,5 +9,10 @@ class SubmitForm(ModelForm):
 		model = Prints
 		fields = ['source_code']
 		widgets = {
-			'source_code': forms.Textarea(attrs={'class': 'form-control'})
+			'source_code': forms.Textarea(
+				attrs={
+					'class': 'form-control',
+					'autofocus': True
+				}
+			)
 		}
