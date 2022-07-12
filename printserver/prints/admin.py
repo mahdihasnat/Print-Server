@@ -17,6 +17,7 @@ class PrintsAdmin(admin.ModelAdmin):
 	search_fields = ['print_id', 'owner__user__name','owner__user__username', 'source_code', 'submission_time', 'printing_time', 'total_page', 'status']
 	ordering = ('-submission_time',)
 	actions = [make_delivered]
+	list_per_page = 10
 
 	def view_pdf(self,obj):
 		return format_html('<a href="/pdf/{0}.pdf">View Pdf</a>', obj.print_id)
