@@ -19,12 +19,21 @@ class TeamUser(HttpUser):
 						'X-CSRFToken': csrftoken,
 						'Referer': '/'
 						})
+	@task
+	def submit(self):
+		response = self.client.get('/submit/')
+		csrftoken = response.cookies['csrftoken']
+		self.client.post('/submit/',
+					{
+						'csrfmiddlewaretoken': csrftoken,
+						'source_code': 'print("Hello World")',
+					},
+					headers={
+						'X-CSRFToken': csrftoken,
+						'Referer': '/'
+						})
 
 	@task
 	def status(self):
-		self.client.get("/status")
-	
-	@task
-	def submit_get(self):
-		self.client.get("/submit")
+		self.client.get("/status/")
 	
