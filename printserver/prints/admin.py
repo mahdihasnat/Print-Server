@@ -20,7 +20,9 @@ class PrintsAdmin(admin.ModelAdmin):
 	list_per_page = 10
 
 	def view_pdf(self,obj):
-		return format_html('<a href="/pdf/{0}.pdf">View Pdf</a>', obj.print_id)
+		# click to open in new tab
+		# https://stackoverflow.com/questions/15551779/open-link-in-new-tab-or-window
+		return format_html('<a target="_blank" rel="noopener noreferrer" href="/pdf/{0}.pdf">View Pdf</a>', obj.print_id)
 	class Media:
 		js = ['js/auto_refresher.js']
 
