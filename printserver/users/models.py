@@ -56,6 +56,8 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 			verbose_name = _("user")
 			verbose_name_plural = _("users")
 			abstract = True
+			indexes = [models.Index(fields=['username',])]
+
 
 	def clean(self):
 			super().clean()
@@ -118,6 +120,9 @@ class TeamUser(models.Model):
 		null=True,
 		verbose_name='Location',
 	)
+
+	class Meta:
+		indexes = [models.Index(fields=['user',])]
 
 	def __str__(self):
 		return str(self.user)
