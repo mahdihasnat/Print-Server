@@ -48,8 +48,13 @@ class PDF(FPDF):
 	def init(self):
 		self.add_font(FONT_NAME, '',path_to_font / 'CONSOLA.TTF', uni=True)
 		self.set_auto_page_break(True)	
-		# self.set_margins(0,0,0)
 		self.alias_nb_pages()
+		if self.conf.margin_left :
+			self.set_left_margin(self.conf.margin_left)
+		if self.conf.margin_right :
+			self.set_right_margin(self.conf.margin_right)
+		if self.conf.margin_top :
+			self.set_top_margin(self.conf.margin_top)
 		self.add_page()
 	
 	def add_source_code(self,source_code):
