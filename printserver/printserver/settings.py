@@ -145,3 +145,7 @@ LOGOUT_REDIRECT_URL = 'logout'
 
 # Project Title
 PROJECT_TITLE = 'Print Server'
+
+# Constraints
+MAX_PAGE_COUNT = 100
+
