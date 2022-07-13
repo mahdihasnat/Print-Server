@@ -4,9 +4,9 @@ from solo.models import SingletonModel
 class Prints(models.Model):
 
 	class Status(models.IntegerChoices):
-		QUEUED = 2
-		PRINTING = 3
-		DELIVERED = 6
+		QUEUED = 1
+		PRINTING = 2
+		DELIVERED = 3
 
 	print_id = models.AutoField(primary_key=True)
 	owner = models.ForeignKey('users.TeamUser', on_delete=models.CASCADE , related_name='prints')

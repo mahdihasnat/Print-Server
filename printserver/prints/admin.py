@@ -24,7 +24,7 @@ class PrintsAdmin(admin.ModelAdmin):
 		# https://stackoverflow.com/questions/15551779/open-link-in-new-tab-or-window
 		return format_html('<a target="_blank" rel="noopener noreferrer" href="/pdf/{0}.pdf">View Pdf</a>', obj.print_id)
 	class Media:
-		js = ['js/auto_refresher.js']
+		js = ['js/auto_refresher.js', 'js/prints_admin_row_color.js']
 
 from solo.admin import SingletonModelAdmin
 from .models import PrintConfiguration
