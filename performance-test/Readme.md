@@ -1,6 +1,6 @@
 ### Install [Locust](https://docs.locust.io/en/stable/what-is-locust.html)
 ```
-pip install locust
+pip install locust faker
 ```
 
 Steps to run tests

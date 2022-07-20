@@ -1,8 +1,10 @@
-from this import d
-from locust import HttpUser, TaskSet, task
+from locust import HttpUser, TaskSet, task, between
 import random
+import faker
 
 class TeamUser(HttpUser):
+
+	wait_time = between(5,20)
 
 	def on_start(self):
 		id = str(random.randint(0,119))
@@ -23,12 +25,13 @@ class TeamUser(HttpUser):
 						})
 	@task
 	def submit(self):
+		code = faker.Faker().pystr(min_chars=50, max_chars=10000)
 		response = self.client.get('/submit/')
 		csrftoken = response.cookies['csrftoken']
 		self.client.post('/submit/',
 					{
 						'csrfmiddlewaretoken': csrftoken,
-						'source_code': 'print("Hello World")',
+						'source_code': code,
 					},
 					headers={
 						'X-CSRFToken': csrftoken,
