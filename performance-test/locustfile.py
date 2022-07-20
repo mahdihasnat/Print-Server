@@ -1,10 +1,12 @@
 from this import d
 from locust import HttpUser, TaskSet, task
+import random
 
 class TeamUser(HttpUser):
 
 	def on_start(self):
-		self.login('t1','t1')
+		id = str(random.randint(0,119))
+		self.login('lt'+id,'lt'+id)
 	
 	def login(self,username,password):
 		response = self.client.get('/login/')
