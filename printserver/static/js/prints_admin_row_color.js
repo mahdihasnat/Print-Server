@@ -4,9 +4,11 @@ function colorRow () {
 		row = table.rows[i];
 		val = row.cells[6].childNodes[0].value;
 		if (val == 1) // queued
-			row.style.backgroundColor = "#4d2322";
+			row.classList.add("alert","alert-danger");
 		else if(val == 2) // printing
-			row.style.backgroundColor = "#22334d";
+			row.classList.add("alert","alert-warning");
+		else
+			row.classList.add("alert","alert-success");
 	}
 }
 // call functoin when document is ready

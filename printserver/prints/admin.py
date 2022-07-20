@@ -25,6 +25,9 @@ class PrintsAdmin(admin.ModelAdmin):
 		return format_html('<a target="_blank" rel="noopener noreferrer" href="/pdf/{0}.pdf">View Pdf</a>', obj.print_id)
 	class Media:
 		js = ['js/auto_refresher.js', 'js/prints_admin_row_color.js']
+		css = {
+			'all':('css/custom-bootstrap-prints-admin.css',),
+		}
 
 from solo.admin import SingletonModelAdmin
 from .models import PrintConfiguration
