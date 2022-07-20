@@ -12,7 +12,7 @@ class MyUserCreationForm(UserCreationForm):
 class MyUserAdmin(admin.ModelAdmin):
 	form = UserChangeForm
 	list_display =  ('username','is_team','is_printer')
-	list_filter = ('username','is_team','is_printer')
+	list_filter = ('is_team','is_printer')
 	search_fields = ('username','is_team','is_printer')
 
 	def get_form(self, request, obj=None, **kwargs):
