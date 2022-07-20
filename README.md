@@ -53,3 +53,12 @@ pip freeze > requirements.txt
 | admin  | ...              | handled by django admin implementation
 | admin-prints model | ...  | Auto refresging enabled if page is scrolled to the top. Scroll down a little bit to stop auto refresh. 
 Control+Click on view pdf link to open pdf in new tab.	
+
+## Production checklist
+- Check if `DEBUG=False` in settings.py
+- Run staticserver ( preferrably in another pc )
+- add static url in settings.py
+- makemigration and migrate
+- add user info
+- runserver
+- check from team pc & printer pc
