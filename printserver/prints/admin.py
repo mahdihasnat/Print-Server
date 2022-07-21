@@ -7,6 +7,15 @@ from .filters import LabFilter
 def make_delivered(modeladmin, request, queryset):
 	queryset.update(status=Prints.Status.DELIVERED)
 
+@admin.action(description="Mark Selected prints as Printing")
+def make_printing(modeladmin, request, queryset):
+	queryset.update(status=Prints.Status.PRINTING)
+
+@admin.action(description="Mark Selected prints as Queued")
+def make_queued(modeladmin, request, queryset):
+	queryset.update(status=Prints.Status.QUEUED,printing_time = None)
+
+
 
 @admin.register(Prints)
 class PrintsAdmin(admin.ModelAdmin):
@@ -16,7 +25,7 @@ class PrintsAdmin(admin.ModelAdmin):
 	list_filter = ('status','submission_time', 'total_page',LabFilter)
 	search_fields = ['print_id', 'owner__user__name','owner__user__username', 'source_code', 'submission_time', 'printing_time', 'total_page', 'status']
 	ordering = ('-submission_time',)
-	actions = [make_delivered]
+	actions = [make_queued, make_printing, make_delivered]
 	list_per_page = 10
 
 	def view_pdf(self,obj):
