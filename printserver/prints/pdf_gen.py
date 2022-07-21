@@ -8,6 +8,10 @@ import pathlib
 path_to_font = pathlib.Path(__file__).parent.absolute() / 'fonts'
 
 FONT_NAME = 'ConsolasR'
+# FONT_FILE_NAME = 'consolas/R.TTF'
+# FONT_FILE_NAME = 'monoid/R.TTF'
+# FONT_FILE_NAME = 'hack/R.TTF'
+FONT_FILE_NAME = 'roboto-mono/R.TTF'
 
 class PDF(FPDF):
 
@@ -46,14 +50,14 @@ class PDF(FPDF):
 		self.dashed_line(self.get_x(),self.get_y(),self.w-self.get_x(),self.get_y())
 
 	def init(self):
-		self.add_font(FONT_NAME, '',path_to_font / 'CONSOLA.TTF', uni=True)
+		self.add_font(FONT_NAME, '',path_to_font / FONT_FILE_NAME, uni=True)
 		self.set_auto_page_break(True)	
 		self.alias_nb_pages()
-		if self.conf.margin_left :
+		if self.conf.margin_left is not None :
 			self.set_left_margin(self.conf.margin_left)
-		if self.conf.margin_right :
+		if self.conf.margin_right is not None :
 			self.set_right_margin(self.conf.margin_right)
-		if self.conf.margin_top :
+		if self.conf.margin_top is not None :
 			self.set_top_margin(self.conf.margin_top)
 		self.add_page()
 	
