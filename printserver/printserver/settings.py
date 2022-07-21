@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4=11!n&7w^6qt&ggee@(4800yg1g62bz)$!@t95pnlhfsq-73n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -78,7 +78,7 @@ TEMPLATES = [
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-STATIC_URL = '/static/'
+STATIC_URL = 'http://127.0.0.1:8001/collectedstatic/'
 STATIC_ROOT = BASE_DIR / 'collectedstatic'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
