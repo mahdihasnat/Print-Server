@@ -39,7 +39,8 @@ def submit_view(request):
 				messages.success(request,'Print request submitted successfully')
 				try:
 					add_prints(prints)
-				except:
+				except Exception as e:
+					print( e )
 					print("Auto Print Failed: print id: ", prints.print_id)
 				
 				return redirect('status')
