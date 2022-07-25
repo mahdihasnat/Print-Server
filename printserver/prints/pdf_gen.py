@@ -101,3 +101,19 @@ def set_pagecount(print):
 	pdf.add_source_code(print.source_code)
 	print.total_page = pdf.page_no()
 	return 
+
+def save_pdf(print, file_path):
+	# Instantiation of inherited class
+	conf = PrintConfiguration.get_solo()
+	pdf = PDF(
+			print_id=str(print.print_id),
+			location=str(print.owner.location),
+			team_name=str(print.owner.get_name()),
+			conf=conf,
+			orientation=conf.orientation, unit=conf.unit, format=conf.paper_type
+			)
+
+	pdf.init()
+	pdf.add_source_code(print.source_code)
+	pdf.output(file_path,dest='F')
+	return

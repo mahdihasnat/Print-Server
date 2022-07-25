@@ -7,6 +7,7 @@ from django.contrib import messages
 from .models import Prints
 from .pdf_gen import get_pdf, set_pagecount
 from .forms import SubmitForm
+from .printer import add_prints
 
 from users.models import TeamUser
 
@@ -36,6 +37,11 @@ def submit_view(request):
 			if team_user.get_total_page_usage() + prints.total_page <= settings.MAX_PAGE_COUNT:
 				prints.save()
 				messages.success(request,'Print request submitted successfully')
+				try:
+					add_prints(prints)
+				except:
+					print("Auto Print Failed: print id: ", prints.print_id)
+				
 				return redirect('status')
 			else:
 				messages.error(request, 'Request Failed! Page limit exceedded')
