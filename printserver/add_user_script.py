@@ -134,16 +134,37 @@ def add_locust_data():
 		TeamUser.objects.bulk_update(users, ['lab', 'location'])
 	
 def add_from_csv(csv_file_name):
-	# format: row_number , Team_name , Location , Username, Password
+	# format: Team_name, Lab, Location, Username, Password
+
 	with open(csv_file_name, 'r') as file:
 		reader = csv.reader(file)
+		users = []
+		teams = []
 		for row in reader:
 			username = row[3]
 			password = row[4]
-			team_name = row[1]
+			team_name = row[0]
 			location = row[2]
-			lab_name = "Lab"
-			add_team(username, password, team_name, lab_name, location)
+			lab_name = row[1]
+
+			user = MyUser()
+			user.is_team = True
+			user.username = username
+			user.set_password(password)
+			user.name = team_name
+			user.is_printer = False
+			users.append(user)
+
+			team = TeamUser()
+			team.lab = globals()[lab_name]
+			team.location = str(location)
+			team.user = user
+			teams.append(team)
+		
+		MyUser.objects.bulk_create(users)
+		TeamUser.objects.bulk_create(teams)
+
+
 
 
 # create_printer_group()
@@ -151,7 +172,7 @@ start_time = time.time()
 add_superuser('admin', 'admin')
 add_team("t1","t1","Team one","DBL","1-2")
 add_team("t2","t2","Team two","BIO","2-3")
-add_printer("p1","p1")
+add_from_csv('data.csv')
 # add_locust_data()
 end_time = time.time()
 print("All data added")
