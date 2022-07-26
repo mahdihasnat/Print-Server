@@ -21,7 +21,7 @@ PRINT_FILES_DIR = BASE_DIR.parent / 'tmp'
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4=11!n&7w^6qt&ggee@(4800yg1g62bz)$!@t95pnlhfsq-73n'
+SECRET_KEY = 'haha vodox'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -150,5 +150,5 @@ LOGOUT_REDIRECT_URL = 'logout'
 PROJECT_TITLE = 'Print Server'
 
 # Constraints
-MAX_PAGE_COUNT = 100
+MAX_PAGE_COUNT = 40
 
