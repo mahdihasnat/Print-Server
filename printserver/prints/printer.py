@@ -16,11 +16,11 @@ def save_to_file(prints):
 def do_prints(prints):
 	file_path = save_to_file(prints)
 	# print( "file path: " , file_path)
-	p = subprocess.Popen(['lpr',str(file_path)], stdout=subprocess.PIPE)
+	p = subprocess.Popen(['lpr',str(file_path)], stdout=subprocess.PIPE,stderr = subprocess.PIPE)
 	(out,err) = p.communicate()
 	print("Error Stream:",err)
 	print("Output Stream:",out)
-	if len(out)> 0:
+	if len(err)> 0:
 		return False
 	else:
 		prints.status = Prints.Status.PRINTING
