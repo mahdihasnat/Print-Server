@@ -48,19 +48,19 @@ class PrintConfiguration(SingletonModel):
 
 
 	line_height = models.FloatField(
-		default=11.0,
+		default=12.0,
 		null=False,
 		blank=False,
 		verbose_name="Line Height in Units",
-		help_text="Default: 11.0 (in Points)"
+		help_text="Default: 12.0 (in Points)"
 	)
 	
 	font_size = models.FloatField(
-		default=10.0,
+		default=11.0,
 		null=False,
 		blank=False,
 		verbose_name="Font Size in Points",
-		help_text="Default: 10.0"
+		help_text="Default: 11.0"
 	)
 
 	margin_left = models.FloatField(
