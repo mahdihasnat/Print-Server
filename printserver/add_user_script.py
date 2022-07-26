@@ -39,7 +39,7 @@ def get_lab(lab_name):
 PL = get_lab("PL")
 DBL = get_lab("DBL")
 WNL = get_lab("WNL")
-VLSI = get_lab("VLSI")
+VDAL = get_lab("VDAL")
 BIO = get_lab("BIO")
 CL = get_lab("CL")
 IAC = get_lab("IAC")
@@ -123,7 +123,7 @@ def add_locust_data():
 	
 	for i in range(TOTAL_USER):
 		team_user = TeamUser()
-		team_user.lab = random.choice([PL, DBL, WNL, VLSI, BIO, CL, IAC])
+		team_user.lab = random.choice([PL, DBL, WNL, VDAL, BIO, CL, IAC])
 		team_user.location = '1-1'
 		team_user.user = users[i]
 		users[i]=team_user
