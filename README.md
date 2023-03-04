@@ -1,5 +1,8 @@
 # Print-Server
 
+
+### For complete deployment guide, please refer to [deploy-notes.md](deploy-notes.md)
+
 ### Create Virtual Environment
 ```bash
 virtualenv venv

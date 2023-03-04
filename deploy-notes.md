@@ -8,3 +8,6 @@ Steps:
 4. Add user to database: `python3 printserver/manage.py shell < printserver/add_user_script.py`
 5. Follow instructions in [staticserver/Readme.md](staticserver/Readme.md) to setup static server.
 6. Run server: `python3 ./printserver/manage.py runserver`
+
+
+All steps are combined in deploy.sh: `sudo ./deploy.sh`
