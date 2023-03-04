@@ -1,6 +1,8 @@
-Required Applications: python3,nginx,sqlite3
+## Required Applications: python3,nginx,sqlite3
 
-Steps:
+### All steps are combined in deploy.sh: `sudo ./deploy.sh`
+
+## Steps:
 1. Install dependencies: `pip3 install -r requirements.txt`	
 2. * Make migrations: `python3 ./printserver/manage.py makemigrations`
 	*  Migrate: `python3 ./printserver/manage.py migrate`
@@ -8,6 +10,3 @@ Steps:
 4. Add user to database: `python3 printserver/manage.py shell < printserver/add_user_script.py`
 5. Follow instructions in [staticserver/Readme.md](staticserver/Readme.md) to setup static server.
 6. Run server: `python3 ./printserver/manage.py runserver`
-
-
-All steps are combined in deploy.sh: `sudo ./deploy.sh`
