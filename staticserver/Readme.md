@@ -12,6 +12,7 @@
 server {
 	listen 8001;
 	location /collectedstatic/ {
+# change next line to your project dir 
 		root /home/user/..../printserver/;
 	}
 	add_header Access-Control-Allow-Origin *;
