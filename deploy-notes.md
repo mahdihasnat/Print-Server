@@ -1,4 +1,4 @@
-Required Applications: python3,
+Required Applications: python3,nginx,sqlite3
 
 Steps:
 1. Install dependencies: `pip3 install -r requirements.txt`	
