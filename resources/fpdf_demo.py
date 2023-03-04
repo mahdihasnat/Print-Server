@@ -60,5 +60,6 @@ pdf.add_page()
 pdf.set_font('ConsolasR', '', 12)
 for i in range(1, 41):
     pdf.cell(0, 10, 'Printing line number ' + str(i), 0, 1)
+pdf.cell(0,10,'!@#$%^&*')
 pdf.output('tuto2.pdf', 'F')
 
