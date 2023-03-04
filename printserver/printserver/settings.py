@@ -24,7 +24,7 @@ PRINT_FILES_DIR = BASE_DIR.parent / 'tmp'
 SECRET_KEY = 'haha vodox'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
