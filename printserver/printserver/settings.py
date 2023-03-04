@@ -79,7 +79,8 @@ TEMPLATES = [
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
+STATIC_URL = 'http://127.0.0.1:8001/collectedstatic/'
 STATIC_ROOT = BASE_DIR / 'collectedstatic'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
