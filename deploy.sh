@@ -9,6 +9,9 @@ $PIPCMD install -r requirements.txt
 $PYTHONCMD printserver/manage.py makemigrations users prints
 $PYTHONCMD printserver/manage.py migrate
 
+# Collect static
+$PYTHONCMD printserver/manage.py collectstatic
+
 # Add user to database
 $PYTHONCMD printserver/manage.py shell < printserver/add_user_script.py
 
