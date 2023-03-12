@@ -10,8 +10,7 @@ path_to_font = pathlib.Path(__file__).parent.absolute() / 'fonts'
 FONT_NAME = 'ConsolasR'
 # FONT_FILE_NAME = 'consolas/R.TTF'
 # FONT_FILE_NAME = 'monoid/R.TTF'
-# FONT_FILE_NAME = 'hack/R.TTF'
-FONT_FILE_NAME = 'roboto-mono/R.TTF'
+FONT_FILE_NAME = 'hack/R.TTF'
 
 class PDF(FPDF):
 
